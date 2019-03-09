@@ -70,6 +70,7 @@ public class SwipeBackLayout extends FrameLayout {
         if (drawChild && mOpacity > 0F && mDragHelper.getViewDragState() != ViewDragHelper.STATE_IDLE) {
             mShadow.setBounds(mShadowRect.left - mShadow.getIntrinsicWidth(), mShadowRect.top, mShadowRect.left, mShadowRect.bottom);
             mShadow.setAlpha((int) (mOpacity * 255));
+            mShadow.draw(canvas);
         }
         return ret;
     }
