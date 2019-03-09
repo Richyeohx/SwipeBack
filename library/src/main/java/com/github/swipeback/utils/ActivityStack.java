@@ -44,6 +44,18 @@ public final class ActivityStack implements Application.ActivityLifecycleCallbac
         return mStack.size();
     }
 
+    /**
+     * 获取上一个Activity
+     *
+     * @return 上一个Activity
+     */
+    public Activity getPreActivity() {
+        if (mStack.size() > 1) {
+            return mStack.get(mStack.size() - 2);
+        }
+        return null;
+    }
+
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         mStack.push(activity);
