@@ -154,8 +154,12 @@ public class SwipeBackLayout extends FrameLayout {
         @Override
         public void onViewDragStateChanged(int state) {
             super.onViewDragStateChanged(state);
-            if (mScrollPercent >= 1F) {
-                mActivity.finish();
+            if (state == ViewDragHelper.STATE_IDLE) {
+                if (mScrollPercent >= 1F) {
+                    mActivity.finish();
+                } else {
+                    recoveryPreLayout(getPreLayout());
+                }
             }
         }
 
@@ -185,7 +189,6 @@ public class SwipeBackLayout extends FrameLayout {
             } else {
                 left = 0;
                 recoveryPreLayout(getPreLayout());
-                ActivityUtils.convertFromTranslucent(mActivity);
             }
             mDragHelper.settleCapturedViewAt(left, 0);
             invalidate();
