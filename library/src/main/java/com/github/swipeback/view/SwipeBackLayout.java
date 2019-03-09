@@ -51,6 +51,7 @@ public class SwipeBackLayout extends FrameLayout {
         mShadow = ContextCompat.getDrawable(getContext(), R.drawable.bg_shadow_left);
         mShadowRect = new Rect();
         mDragHelper = ViewDragHelper.create(this, 1F, new Callback());
+        mDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_LEFT);
     }
 
     @Override
