@@ -33,9 +33,9 @@ public class ActivityUtils {
      */
     public static void convertToTranslucent(@NonNull Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            convertToTranslucentBeforeL(activity);
-        } else {
             convertToTranslucentAfterL(activity);
+        } else {
+            convertToTranslucentBeforeL(activity);
         }
     }
 
