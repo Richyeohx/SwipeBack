@@ -22,6 +22,9 @@ import com.github.swipeback.utils.ActivityStack;
 import com.github.swipeback.utils.ActivityUtils;
 
 public class SwipeBackLayout extends FrameLayout {
+    //默认滑动速度阈值
+    private static final int DEFAULT_VELOCITY_THRESHOLD = 600;
+    //ViewDragHelper
     private ViewDragHelper mDragHelper;
     //注入的Activity
     private Activity mActivity;
@@ -37,6 +40,8 @@ public class SwipeBackLayout extends FrameLayout {
     private Drawable mShadow;
     //阴影可见区域
     private Rect mShadowRect;
+    //滑动速度阈值
+    private int mVelocityThreshold = DEFAULT_VELOCITY_THRESHOLD;
 
     public SwipeBackLayout(@NonNull Context context) {
         this(context, null);
@@ -184,7 +189,7 @@ public class SwipeBackLayout extends FrameLayout {
             super.onViewReleased(releasedChild, xvel, yvel);
             int childWidth = releasedChild.getWidth();
             int left;
-            if (mContentLeft >= (childWidth * 0.25)) {
+            if (xvel >= mVelocityThreshold || mContentLeft >= (childWidth * (1F / 3F))) {
                 left = childWidth;
             } else {
                 left = 0;
