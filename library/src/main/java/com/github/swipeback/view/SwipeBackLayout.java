@@ -95,12 +95,22 @@ public class SwipeBackLayout extends FrameLayout {
         decorView.addView(this);
     }
 
+    /**
+     * 设置内容View
+     *
+     * @param view 从DecorView中获取的View
+     */
     public void setContentView(View view) {
         mContentView = view;
     }
 
+    /**
+     * 获取上一个Activity布局
+     *
+     * @return 上一个Activity布局
+     */
     public SwipeBackLayout getPreLayout() {
-        return ((ISwipeBack) mActivity).getPreLayout();
+        return ((ISwipeBack) mActivity).getPreActivity().getPreLayout();
     }
 
     /**
@@ -110,7 +120,11 @@ public class SwipeBackLayout extends FrameLayout {
      */
     private void linkagePreLayout(SwipeBackLayout layout) {
         if (layout != null) {
-            layout.setTranslationX(mScrollPercent * layout.getWidth());
+            float translationX = (float) (0.4 / 0.9 * (mScrollPercent - 0.9) * layout.getWidth());
+            if (translationX > 0) {
+                translationX = 0;
+            }
+            layout.setTranslationX(translationX);
         }
     }
 
