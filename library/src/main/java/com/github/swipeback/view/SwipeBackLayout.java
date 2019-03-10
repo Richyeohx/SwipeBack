@@ -125,7 +125,7 @@ public class SwipeBackLayout extends FrameLayout {
      */
     private void linkagePreLayout(SwipeBackLayout layout) {
         if (layout != null) {
-            float translationX = (float) (0.4 / 0.9 * (mScrollPercent - 0.9) * layout.getWidth());
+            float translationX = (float) (0.4 / 0.8 * (mScrollPercent - 0.8) * layout.getWidth());
             if (translationX > 0) {
                 translationX = 0;
             }
@@ -148,9 +148,9 @@ public class SwipeBackLayout extends FrameLayout {
         @Override
         public boolean tryCaptureView(@NonNull View view, int pointerId) {
             boolean edgeTouched = mDragHelper.isEdgeTouched(ViewDragHelper.EDGE_LEFT, pointerId);
-            //当前Activity栈大于1的时候才可以滑动
-            boolean canSwipe = ActivityStack.getInstance().getStackSize() > 1;
-            if (edgeTouched && canSwipe) {
+            //当前Activity栈大于1的时候与EdgeTouched等于EDGE_LEFT才可以滑动
+            boolean canSwipe = edgeTouched && ActivityStack.getInstance().getStackSize() > 1;
+            if (canSwipe) {
                 ActivityUtils.convertToTranslucent(mActivity);
             }
             return canSwipe;
