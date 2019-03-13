@@ -8,7 +8,7 @@ Let your activity exnteds `SwipeBackActivity` and setting style as Translucent a
 ``` Java
   public class MainActivity extends SwipeBackActivity{
       @Override
-      protect void onCreate(saveInstanceState Bundle){
+      protected void onCreate(saveInstanceState Bundle){
           super.onCreate(saveInstanceState);
           setContentView(R.layout.activity_main);
       }
